@@ -19,6 +19,7 @@ variable "client_id" {
 variable "client_secret" {
 }
 variable "subscription_id" {
+Default = "4a6f5c29-12cd-4206-b7c9-84e83ac58381"
 }
 variable "tenant_id" {
 }
