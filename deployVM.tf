@@ -1,12 +1,27 @@
 terraform {
-  required_version = ">=1.0"
-
+  backend "remote" {
+    organization = "rmOrg"
+ 
+    workspaces {
+      name = "AzureDeploy"
+    }
+  }
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "4.1.0"
+      version = "=2.46.0"
     }
   }
+}
+
+variable "client_id" {
+}
+variable "client_secret" {
+}
+variable "subscription_id" {
+}
+variable "tenant_id" {
+}
 
   backend "azurerm" {
         storage_account_name = "saterraformlabphi"
@@ -18,9 +33,12 @@ terraform {
 }
 
 provider "azurerm" {
-  subscription_id = "cd8acfc4-baea-4c96-8ae2-f6b5fc55eda8"
-  features {
-  }
+  features {}
+ 
+  subscription_id = var.subscription_id
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
 }
 
 variable "RGName" {
@@ -46,6 +64,9 @@ variable "vnetaddress" {
 
 variable "subnetaddress"{
   default = "10.10.0.0/24"
+}
+
+variable "admin_pwd" {
 }
 
 resource "azurerm_virtual_network" "VNet" {
@@ -147,5 +168,10 @@ resource "azurerm_windows_virtual_machine" "VM" {
 
     boot_diagnostics {
         storage_account_uri = azurerm_storage_account.sadiagnostics20250612.primary_blob_endpoint
+    }
+    os_profile {
+      computer_name  = "VM1"
+      admin_username = "u2uadmin"
+      admin_password = var.admin_pwd
     }
 }
