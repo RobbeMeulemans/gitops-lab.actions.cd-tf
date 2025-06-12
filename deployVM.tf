@@ -4,7 +4,7 @@ terraform {
         container_name = "terraform"
         key = "terraform.tfstate"
         # access_key = "jqC2DtY1aPx4y17KJHk/iFsrgA3t5O6bWowKc1zQ/2TP+UNJuMjmMfbUkIpMR289w6o1PE/cfPwS+AStZKxNnA=="
-        access_key = "PXn4WKNidkunhg.atlasv1.kUn1rN4oUkvbkGfzU64se2kkiR0KQs7LVy58vOdWHHE2siz4p3bVrAalypRQBRTfG4I"
+        access_key = PXn4WKNidkunhg.atlasv1.kUn1rN4oUkvbkGfzU64se2kkiR0KQs7LVy58vOdWHHE2siz4p3bVrAalypRQBRTfG4I
     }
   required_providers {
     azurerm = {
