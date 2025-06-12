@@ -1,11 +1,12 @@
 terraform {
-  backend "remote" {
-    organization = "rmOrg"
- 
-    workspaces {
-      name = "AzureDeploy"
+  backend "azurerm" {
+        storage_account_name = "saterraformlabphi"
+        container_name = "terraform"
+        key = "terraform.tfstate"
+        # access_key = "jqC2DtY1aPx4y17KJHk/iFsrgA3t5O6bWowKc1zQ/2TP+UNJuMjmMfbUkIpMR289w6o1PE/cfPwS+AStZKxNnA=="
+        access_key = var.ACCESS_KEY
     }
-  }
+}
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -23,14 +24,6 @@ variable "subscription_id" {
 variable "tenant_id" {
 }
 
-  backend "azurerm" {
-        storage_account_name = "saterraformlabphi"
-        container_name = "terraform"
-        key = "terraform.tfstate"
-        # access_key = "jqC2DtY1aPx4y17KJHk/iFsrgA3t5O6bWowKc1zQ/2TP+UNJuMjmMfbUkIpMR289w6o1PE/cfPwS+AStZKxNnA=="
-        access_key = var.ACCESS_KEY
-    }
-}
 
 provider "azurerm" {
   features {}
