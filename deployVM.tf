@@ -45,17 +45,15 @@ variable "subnetAddress" {
 }
 
 provider "azurerm" {
-    features { }
-    subscription_id = var.subscriptionId
-}
-data "azurerm_key_vault" "keyvault" {
-    name = "kvels100"
-    resource_group_name = "RG1" 
+  features {}
+ 
+  subscription_id = var.subscription_id
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
 }
 
-data "azurerm_key_vault_secret" "adminpwd" {
-    name = "adminpwd"
-    key_vault_id = data.azurerm_key_vault.keyvault.id
+variable "admin_pwd" {
 }
 
 resource "azurerm_resource_group" "RG" {
@@ -157,11 +155,11 @@ resource "azurerm_virtual_machine" "VM1" {
       managed_disk_type = "Premium_LRS"
     }
 
-    os_profile {
-      computer_name = var.vmName
-      admin_username = "u2uadmin"
-      admin_password = data.azurerm_key_vault_secret.adminpwd.value
-    }
+os_profile {
+  computer_name  = "VM1"
+  admin_username = "u2uadmin"
+  admin_password = var.admin_pwd
+}
 
     os_profile_windows_config {
       provision_vm_agent = true
