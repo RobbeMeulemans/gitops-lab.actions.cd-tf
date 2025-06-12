@@ -11,7 +11,7 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "=2.46.0"
     }
- }
+ d}
 }
 
 variable "client_id" {
