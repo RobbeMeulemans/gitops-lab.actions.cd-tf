@@ -6,7 +6,7 @@ on:
     paths: [deployVM.tf, .github/workflows/terraform.yml] 
 
 env:
-  TF_VAR_subscription_id: 4a6f5c29-12cd-4206-b7c9-84e83ac58381
+  TF_VAR_subscription_id: ${{secrets.AZURE_SUBSCRIPTION_ID}}
   TF_VAR_client_id: ${{secrets.AZURE_CLIENT_ID}}
   TF_VAR_client_secret: ${{secrets.AZURE_CLIENT_SECRET}}
   TF_VAR_tenant_id: ${{secrets.AZURE_TENANT_ID}}
