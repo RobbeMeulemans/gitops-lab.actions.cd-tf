@@ -11,19 +11,20 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "=2.46.0"
     }
- d}
+ }
 }
 
-variable "client_id" {
-}
-variable "client_secret" {
-}
-variable "subscription_id" {
-default = "4a6f5c29-12cd-4206-b7c9-84e83ac58381"
-}
-variable "tenant_id" {
-}
 
+
+
+provider "azurerm" {
+  features {}
+ 
+  subscription_id = var.subscription_id
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
+}
 
 variable "resourceGroupName" {
     default = "RG10"
@@ -45,13 +46,13 @@ variable "subnetAddress" {
     default = "10.10.0.0/24"
 }
 
-provider "azurerm" {
-  features {}
- 
-  subscription_id = var.subscription_id
-  client_id       = var.client_id
-  client_secret   = var.client_secret
-  tenant_id       = var.tenant_id
+variable "client_id" {
+}
+variable "client_secret" {
+}
+variable "subscription_id" {
+}
+variable "tenant_id" {
 }
 
 variable "admin_pwd" {
